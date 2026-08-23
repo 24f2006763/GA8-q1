@@ -105,6 +105,12 @@ def row_compact_json(row_dict):
 
 # --- Serverless Handler ---
 class handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_json_response(200, {
+            "status": "healthy",
+            "message": "Corpus Service is running. Send a POST request to /build-corpus"
+        })
+        
     def do_POST(self):
         if self.path != "/build-corpus":
             self.send_response(404)
